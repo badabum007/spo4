@@ -18,10 +18,10 @@ int main(int argc, char *argv[])
 			break;
 			case 'q':
 			closeAllThreads(&stack, &data);
+			closeSignalObject(&data);
 			return 0;
 			break;
 		}
 	}
-	closeSignalObject(&data);
 	return 0;
 }
