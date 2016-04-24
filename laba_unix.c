@@ -67,3 +67,8 @@ void createSignalObject(struct Data *data)
 	pthread_mutex_init(&(data->mutex), NULL);
 	pthread_mutex_unlock(&(data->mutex));
 }
+
+void closeSignalObject(struct Data *data)
+{
+	pthread_mutex_destroy(&(data->mutex));
+}

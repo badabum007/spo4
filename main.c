@@ -5,7 +5,6 @@ int main(int argc, char *argv[])
 	struct Stack *stack = NULL;
 	struct Data data;
 	createSignalObject(&data);
-
 	while (1)
 	{
 		switch (_getch())
@@ -23,7 +22,6 @@ int main(int argc, char *argv[])
 			break;
 		}
 	}
-
-	pthread_mutex_destroy(&(data.mutex));
+	closeSignalObject(&data);
 	return 0;
 }

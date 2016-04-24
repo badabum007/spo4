@@ -6,7 +6,8 @@
 #define PLATFORM_UNIX 2 
 
 #if defined(_WIN32) || defined(_WIN64) 
-	#include <windows.h> 
+	#include <windows.h>
+	#include <process.h>
 	#include <conio.h> 
 	#define PLATFORM PLATFORM_WIN 
 #else 
@@ -21,7 +22,8 @@ char _getch();
 struct Data 
 {
 	#if PLATFORM == PLATFORM_WIN
-	PROCESS_INFORMATION prInfo;
+	CRITICAL_SECTION CriticalSection;
+	HANDLE ThreadId;
 	#else
 	pthread_t thread;	
 	pthread_mutex_t mutex;
@@ -36,4 +38,10 @@ void closeLastThread(struct Stack **, struct Data *);
 void closeAllThreads(struct Stack **, struct Data *);
 
 void createSignalObject(struct Data *);
+void closeSignalObject(struct Data *data);
+
+#if PLATFORM == PLATFORM_WIN
+unsigned  __stdcall printThreads(PVOID);
+#else
 void* printThreads(void*);
+#endif

@@ -1,6 +1,6 @@
 struct Stack {
 	#if PLATFORM == PLATFORM_WIN
-		HANDLE hand;
+		HANDLE ThreadId;
 	#else
 		pthread_t thread;
 	#endif

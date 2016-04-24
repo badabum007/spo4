@@ -18,7 +18,7 @@ void push(struct Stack **head, struct Data data) {
 		exit(1);
 
 	tmp->next = *head;
-	tmp->hand = data.prInfo.hProcess;
+	tmp->ThreadId = data.ThreadId;
 
 	*head = tmp;
 }
